@@ -1,3 +1,5 @@
 node_modules
-/lib
-/src/_dummy-json/sensitive
+lib
+.nyc_output
+coverage
+src/debugging.ts

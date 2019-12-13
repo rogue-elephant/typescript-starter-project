@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test:watch": "ts-mocha -p ./tsconfig.json ./**/*.test.ts -w --watch-extensions ts",
-    "test": "cross-env TS_NODE_FILES=true mocha -exit -require ts-node/register -colors ./**/*.test.ts",
+    "test": "cross-env TS_NODE_FILES=true node_modules/.bin/mocha --exit --require ts-node/register --colors ./**/*.test.ts",
     "coverage": "nyc npm run test",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
@@ -27,6 +27,27 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "start": "npm run test:watch"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "src/__tests__/**",
+      "src/debugging.ts",
+      "**/*.js"
+    ],
+    "reporter": [
+      "html",
+      "text",
+      "text-summary"
+    ],
+    "all": true
   },
   "keywords": [],
   "author": "YOUR NAME",
@@ -40,6 +61,7 @@
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
+    "source-map-support": "^0.5.16",
     "ts-mocha": "^6.0.0",
     "ts-node": "^8.5.4",
     "tslint": "^5.20.0",
