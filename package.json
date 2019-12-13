@@ -1,0 +1,50 @@
+{
+  "name": "your-app",
+  "version": "0.0.1",
+  "description": "your description",
+  "files": [
+    "lib/**/*"
+  ],
+  "bin": {
+    "json-csv-tool": "lib/index.js"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-repo"
+  },
+  "scripts": {
+    "test:watch": "ts-mocha -p ./tsconfig.json ./**/*.test.ts -w --watch-extensions ts",
+    "test": "cross-env TS_NODE_FILES=true mocha -exit -require ts-node/register -colors ./**/*.test.ts",
+    "coverage": "nyc npm run test",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "start": "npm run test:watch"
+  },
+  "keywords": [],
+  "author": "YOUR NAME",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.8",
+    "chai": "^4.2.0",
+    "cross-env": "^6.0.3",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "ts-mocha": "^6.0.0",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {}
+}
