@@ -1,12 +1,12 @@
 {
-  "name": "typescript-project-generator",
+  "name": "<%= projectName %>",
   "version": "0.0.1",
-  "description": "Tool for generating typescript projects quickly.",
+  "description": "<%= description %>",
   "files": [
     "dist/**/*"
   ],
   "bin": {
-    "rogue-elephant-ts-generator": "./dist/index.js"
+    "<%= projectName %>": "dist/index.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "test:watch": "ts-mocha -p ./tsconfig.json ./**/*.test.ts -w --watch-extensions ts",
     "test": "cross-env TS_NODE_FILES=true node_modules/.bin/mocha --exit --require ts-node/register --colors ./**/*.test.ts",
     "coverage": "nyc npm run test",
-    "build": "tsc && shx rm -rf dist/templates && shx cp -r src/templates dist",
+    "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
@@ -26,7 +26,7 @@
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
-    "start": "ts-node src/index.ts"
+    "start": "npm run test:watch"
   },
   "nyc": {
     "extension": [
@@ -50,16 +50,12 @@
     "all": true
   },
   "keywords": [],
-  "author": "Thomas Randell",
+  "author": "YOUR NAME",
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.2.7",
-    "@types/ejs": "^3.0.1",
-    "@types/inquirer": "^6.5.0",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.30",
-    "@types/shelljs": "^0.8.6",
-    "@types/yargs": "^15.0.4",
+    "@types/node": "^12.12.8",
     "chai": "^4.2.0",
     "cross-env": "^6.0.3",
     "mocha": "^6.2.2",
@@ -72,11 +68,5 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.6.4"
   },
-  "dependencies": {
-    "ejs": "^3.0.1",
-    "inquirer": "^7.1.0",
-    "shelljs": "^0.8.3",
-    "shx": "^0.3.2",
-    "yargs": "^15.3.1"
-  }
+  "dependencies": {}
 }
